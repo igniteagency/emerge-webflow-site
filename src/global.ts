@@ -10,7 +10,8 @@ import { duplicateMarqueeList } from '$utils/marquee-list';
 window.Webflow = window.Webflow || [];
 window.Webflow?.push(() => {
   setTimeout(() => {
-    window.WF_IX = Webflow.require('ix3');
+    const webflow = window.Webflow as any;
+    window.WF_IX = webflow?.require?.('ix3');
     console.debug('Webflow IX3 globalised:', window.WF_IX);
   }, 100);
 
@@ -33,6 +34,8 @@ function initComponents() {
 function UIFunctions() {
   duplicateMarqueeList();
   animatedDetailsAccordions();
+  window.conditionalLoadScript('[data-el="counter"]', 'components/counter.js');
+  window.conditionalLoadScript('[data-slider-el="component"]', 'components/slider.js');
 }
 
 function webflowOverrides() {
