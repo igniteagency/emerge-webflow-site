@@ -6,6 +6,7 @@ import { disableWebflowAnchorSmoothScroll } from '$utils/disable-webflow-scroll'
 import handleExternalLinks from '$utils/external-link';
 import addMainElementId from '$utils/main-element-id';
 import { duplicateMarqueeList } from '$utils/marquee-list';
+import { navbarScrollToggle } from '$components/nav-scroll';
 
 window.Webflow = window.Webflow || [];
 window.Webflow?.push(() => {
@@ -32,6 +33,7 @@ function initComponents() {
 }
 
 function UIFunctions() {
+  navbarScrollToggle();
   duplicateMarqueeList();
   animatedDetailsAccordions();
   window.conditionalLoadScript('[data-el="counter"]', 'components/counter.js');
