@@ -7,6 +7,7 @@ export function navbarScrollToggle() {
 
   const container = navbar.querySelector<HTMLElement>('.navbar_container');
   const logoLink = navbar.querySelector<HTMLElement>('.navbar_logo-link');
+  const desktopMediaQuery = window.matchMedia('(min-width: 992px)');
 
   if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
     return;
@@ -53,7 +54,7 @@ export function navbarScrollToggle() {
     if (!isHidden) return;
     isHidden = false;
     navbar.classList.remove('is-hidden');
-    
+
     if (container) {
       gsap.to(container, {
         height: initialContainerHeight,
@@ -74,10 +75,23 @@ export function navbarScrollToggle() {
     }
   };
 
+  const syncNavVisibility = () => {
+    if (!desktopMediaQuery.matches) {
+      showNav();
+    }
+  };
+
+  syncNavVisibility();
+  desktopMediaQuery.addEventListener('change', syncNavVisibility);
 
   ScrollTrigger.create({
     start: 'top top', // Start at the very top
     onUpdate: (self) => {
+      if (!desktopMediaQuery.matches) {
+        showNav();
+        return;
+      }
+
       const scrollY = self.scroll();
       const direction = self.direction; // 1 = down, -1 = up
 
@@ -96,6 +110,3 @@ export function navbarScrollToggle() {
     },
   });
 }
-
-
-
