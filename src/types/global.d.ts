@@ -64,6 +64,21 @@ declare global {
 
     loadCSS: (url: string) => Promise<void>;
 
+    /** Google Translate init function */
+    googleTranslateElementInit: () => void;
+
+    /** Google Translate API */
+    google: {
+      translate: {
+        TranslateElement: {
+          new (options: any, elementId: string): any;
+          FloatPosition: {
+            TOP_LEFT: number;
+          };
+        };
+      };
+    };
+
     /**
      * Conditionally load a script if a selector is found on the page
      * @param selector CSS selector to check for existence

@@ -6,6 +6,7 @@ import { disableWebflowAnchorSmoothScroll } from '$utils/disable-webflow-scroll'
 import handleExternalLinks from '$utils/external-link';
 import addMainElementId from '$utils/main-element-id';
 import { duplicateMarqueeList } from '$utils/marquee-list';
+import { initGoogleTranslate } from '$components/google-translate';
 import { navbarScrollToggle } from '$components/nav-scroll';
 
 window.Webflow = window.Webflow || [];
@@ -30,6 +31,7 @@ window.Webflow?.push(() => {
 
 function initComponents() {
   new Dialog();
+  initGoogleTranslate();
 }
 
 function UIFunctions() {
